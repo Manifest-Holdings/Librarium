@@ -1,11 +1,10 @@
 import React from 'react'
 import { NextPage } from 'next'
 import Head from 'next/head'
-import Script from 'next/script'
 import { AppProps } from 'next/app'
 import { GlobalStyle } from '@chakra-ui/react'
-import { ApolloProvider } from "@apollo/client";
-import client from "../../apollo-client";
+import { ApolloProvider } from '@apollo/client'
+import client from '../../apollo-client'
 import { WalletProvider } from 'hooks/useWalletContext'
 
 type AppLayoutProps = {
