@@ -12,6 +12,7 @@ import {
 import type { Books } from '../utils/types'
 
 import Moment from 'react-moment'
+import Link from 'next/link'
 
 const Home = () => {
   const BOOKS_QUERY = gql`
@@ -73,7 +74,16 @@ const Home = () => {
               <HStack>
                 <Heading size="sm">{book.author.name}</Heading>
                 <Text fontSize="sm" color="#999999">
-                  - {book.author.wallet}
+                  -
+                  <Link
+                    href={
+                      process.env.NEXT_PUBLIC_ETHERSCAN_LINK +
+                      '/address/' +
+                      book.author.wallet
+                    }
+                  >
+                    <a target="_blank">{book.author.wallet}</a>
+                  </Link>
                 </Text>
               </HStack>
             </Stack>
@@ -81,7 +91,13 @@ const Home = () => {
             <Text>{book.tags}</Text>
             <HStack>
               <Text fontSize="xs" pt="2" color="#999999">
-                {book.id}
+                <Link
+                  href={
+                    process.env.NEXT_PUBLIC_ETHERSCAN_LINK + '/tx/' + book.id
+                  }
+                >
+                  <a target="_blank">{book.id}</a>
+                </Link>
               </Text>
               <Text
                 fontSize="xs"

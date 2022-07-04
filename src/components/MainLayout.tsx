@@ -34,7 +34,9 @@ const MainLayout = ({ children }: Props) => {
     return (
       <NextLink href={href} passHref>
         {target == '_blank' ? (
-          <a target="_blank" {...styles}>{children}</a>
+          <a target="_blank" {...styles}>
+            {children}
+          </a>
         ) : (
           <Link {...styles}>{children}</Link>
         )}
@@ -48,12 +50,12 @@ const MainLayout = ({ children }: Props) => {
         <HStack
           h="80px"
           px={['10px', '20px', '40px']}
-          py='10px'
+          py="10px"
           borderBottom="1px"
           borderColor="#fff"
           justifyContent="space-between"
           alignItems="center"
-        >          
+        >
           <NextLink href="/" passHref>
             <Link>
               <Box
@@ -67,8 +69,22 @@ const MainLayout = ({ children }: Props) => {
             </Link>
           </NextLink>
           <HStack gap={['16px', '32px', '64px']}>
-            <NavLink target="_blank" href={ process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT + '/graphql'}>SUBGRAPH</NavLink>
-            <NavLink target="_blank" href={ process.env.NEXT_PUBLIC_ETHERSCAN_LINK + ''}>ETHERSCAN</NavLink>
+            <NavLink
+              target="_blank"
+              href={process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT + '/graphql'}
+            >
+              SUBGRAPH
+            </NavLink>
+            <NavLink
+              target="_blank"
+              href={
+                process.env.NEXT_PUBLIC_ETHERSCAN_LINK +
+                '/address/' +
+                process.env.NEXT_PUBLIC_LIBRARY_CONTRACT_ADDRESS
+              }
+            >
+              ETHERSCAN
+            </NavLink>
             <NavLink href="/publish">PUBLISH</NavLink>
           </HStack>
         </HStack>
