@@ -34,7 +34,8 @@ const Publish = () => {
     author: string
     authorWallet: string
     content: string
-    tags: string[]
+    coverArt: string
+    storyArt: string
   }
 
   interface RevokeValues {
@@ -108,7 +109,8 @@ const Publish = () => {
                       author: '',
                       authorWallet: '',
                       content: '',
-                      tags: [],
+                      coverArt: '',
+                      storyArt: '',
                     }}
                     validationSchema={Yup.object({
                       title: Yup.string().required('Required'),
@@ -136,14 +138,16 @@ const Publish = () => {
                               '?'
                           )
                         ) {
-                          console.log('here')
+                          const tags = []
+                          tags.push({ key: 'coverart', value: values.coverArt })
+                          tags.push({ key: 'storyart', value: values.storyArt })
                           libraryContract
                             .record(
                               values.title,
                               values.author,
                               values.authorWallet,
                               values.content,
-                              values.tags
+                              tags
                             )
                             .then((result) => {
                               console.log('result:', result)
@@ -220,6 +224,37 @@ const Publish = () => {
                             id="content"
                             name="content"
                             textareaProps={{ rows: 10, placeholder: 'Content' }}
+                          />
+                        </Box>
+                        <Box
+                          mb="15px"
+                          w={{ base: '300px', md: '600px', lg: '800px' }}
+                        >
+                          <label htmlFor="coverArt">
+                            Cover Art (URL or CID)
+                          </label>
+                          <InputControl
+                            id="coverArt"
+                            name="coverArt"
+                            inputProps={{
+                              placeholder: 'https://www.example.com/cover.png',
+                            }}
+                          />
+                        </Box>
+                        <Box
+                          mb="15px"
+                          w={{ base: '300px', md: '600px', lg: '800px' }}
+                        >
+                          <label htmlFor="storyArt">
+                            Story Art (URL or CID)
+                          </label>
+                          <InputControl
+                            id="storyArt"
+                            name="storyArt"
+                            inputProps={{
+                              placeholder:
+                                'QmbWqxBEKC3P8tqsKc98xmWNzrzDtRLMiMPL8wBuTGsMnR',
+                            }}
                           />
                         </Box>
                         <HStack>
