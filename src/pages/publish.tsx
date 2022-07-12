@@ -122,6 +122,8 @@ const Publish = () => {
                         )
                         .required('Required'),
                       content: Yup.string().required('Required'),
+                      coverArt: Yup.string().required('Required'),
+                      storyArt: Yup.string().required('Required'),
                     })}
                     onSubmit={(
                       values: RecordValues,
