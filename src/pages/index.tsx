@@ -74,7 +74,7 @@ const Home = () => {
               <HStack>
                 <Heading size="sm">{book.author.name}</Heading>
                 <Text fontSize="sm" color="#999999">
-                  -
+                  -&nbsp;
                   <Link
                     href={
                       process.env.NEXT_PUBLIC_ETHERSCAN_LINK +
