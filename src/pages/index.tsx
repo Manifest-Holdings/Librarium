@@ -10,14 +10,15 @@ import {
   Box,
 } from '@chakra-ui/react'
 import type { Books } from '../utils/types'
-
+import { Remarkable } from 'remarkable'
+import DOMPurify from 'dompurify'
 import Moment from 'react-moment'
 import Link from 'next/link'
 
 const Home = () => {
   const BOOKS_QUERY = gql`
     query Books {
-      books(orderBy: id) {
+      books(orderBy: timestamp, orderDirection: desc) {
         id
         title
         author {
@@ -33,6 +34,7 @@ const Home = () => {
     }
   `
 
+  const md = new Remarkable({ html: true, xhtmlOut: true, breaks: true })
   const { loading, data, error } = useQuery<Books>(BOOKS_QUERY)
 
   return (
@@ -87,7 +89,15 @@ const Home = () => {
                 </Text>
               </HStack>
             </Stack>
-            <Text whiteSpace="pre-wrap">{book.content}</Text>
+            <Box
+              border="1px solid #fff"
+              p="10px"
+              className="story"
+              dangerouslySetInnerHTML={{
+                __html: DOMPurify.sanitize(md.render(book.content)),
+              }}
+            />
+            {/* <Text whiteSpace="pre-wrap">{book.content}</Text> */}
             <Text>{book.tags}</Text>
             <HStack>
               <Text fontSize="xs" pt="2" color="#999999">

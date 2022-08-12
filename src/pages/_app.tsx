@@ -6,6 +6,9 @@ import { GlobalStyle } from '@chakra-ui/react'
 import { ApolloProvider } from '@apollo/client'
 import client from '../../apollo-client'
 import { WalletProvider } from 'hooks/useWalletContext'
+import Fonts from '../components/Fonts'
+import '../theme/storyContent.css'
+import '../theme/markdown.css'
 
 type AppLayoutProps = {
   Component: NextPage & { layout: typeof React.Component }
@@ -24,6 +27,7 @@ function MyApp({ Component, pageProps }: AppProps & AppLayoutProps) {
       </Head>
       <ApolloProvider client={client}>
         <WalletProvider>
+          <Fonts />
           <Layout>
             <GlobalStyle />
             <Component {...pageProps} />

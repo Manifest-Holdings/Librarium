@@ -14,7 +14,43 @@ class MyDocument extends Document {
   render() {
     return (
       <ChakraHtml>
-        <Head />
+        <Head>
+          <link
+            rel="preload"
+            href="/fonts/SweetSansPro/SweetSansPro-Medium.woff2"
+            as="font"
+            type="font/woff2"
+            crossOrigin="true"
+          />
+          <link
+            rel="preload"
+            href="/fonts/Roslindale/Roslindale-TextRegular.woff2"
+            as="font"
+            type="font/woff2"
+            crossOrigin="true"
+          />
+          <link
+            rel="preload"
+            href="/fonts/Roslindale/Roslindale-TextBold.woff2"
+            as="font"
+            type="font/woff2"
+            crossOrigin="true"
+          />
+          <link
+            rel="preload"
+            href="/fonts/Roslindale/Roslindale-DisplayLight.woff2"
+            as="font"
+            type="font/woff2"
+            crossOrigin="true"
+          />
+          <link
+            rel="preload"
+            href="/fonts/Roslindale/Roslindale-DisplayCondensedBold.woff2"
+            as="font"
+            type="font/woff2"
+            crossOrigin="true"
+          />
+        </Head>
         <Body>
           <Main />
           <NextScript />

@@ -2,7 +2,7 @@ import MainLayout from 'components/MainLayout'
 import { useWalletContext } from '../hooks/useWalletContext'
 import { useLibraryContract } from '../hooks/useLibraryContract'
 import { Formik, Form, FormikHelpers } from 'formik'
-import { InputControl, TextareaControl } from 'formik-chakra-ui'
+import { InputControl, SelectControl } from 'formik-chakra-ui'
 import {
   Heading,
   Flex,
@@ -18,8 +18,13 @@ import {
   TabPanel,
   TabPanels,
 } from '@chakra-ui/react'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, ComponentType } from 'react'
 import * as Yup from 'yup'
+import { MDEditorProps } from '@uiw/react-md-editor'
+import '@uiw/react-md-editor/markdown-editor.css'
+// import "@uiw/react-markdown-preview/markdown.css";
+
+import dynamic from 'next/dynamic'
 
 const Publish = () => {
   const { connectWallet, isConnected, displayName, disconnectWallet } =
@@ -28,6 +33,10 @@ const Publish = () => {
   const [isValidForPublishing, setIsValidForPublishing] = useState(false)
   const [submitRecordResult, setSubmitRecordResult] = useState('')
   const [submitRevokeResult, setSubmitRevokeResult] = useState('')
+  const MDEditor: ComponentType<MDEditorProps> = dynamic(
+    () => import('@uiw/react-md-editor').then((mod) => mod.default),
+    { ssr: false }
+  )
 
   interface RecordValues {
     title: string
@@ -36,6 +45,7 @@ const Publish = () => {
     content: string
     coverArt: string
     storyArt: string
+    license: string
   }
 
   interface RevokeValues {
@@ -111,6 +121,7 @@ const Publish = () => {
                       content: '',
                       coverArt: '',
                       storyArt: '',
+                      license: 'CC0',
                     }}
                     validationSchema={Yup.object({
                       title: Yup.string().required('Required'),
@@ -143,6 +154,7 @@ const Publish = () => {
                           const tags = []
                           tags.push({ key: 'coverart', value: values.coverArt })
                           tags.push({ key: 'storyart', value: values.storyArt })
+                          tags.push({ key: 'license', value: values.license })
                           libraryContract
                             .record(
                               values.title,
@@ -153,7 +165,11 @@ const Publish = () => {
                             )
                             .then((result) => {
                               console.log('result:', result)
-                              setSubmitRecordResult('Success! - ' + result.hash)
+                              setSubmitRecordResult(
+                                'Transaction Submitted: ' +
+                                  result.hash +
+                                  ' <br/>Please wait a few moments before it shows up in the Librarium.'
+                              )
                               setSubmitting(false)
                             })
                             .catch((err) => {
@@ -176,7 +192,7 @@ const Publish = () => {
                       }, 500)
                     }}
                   >
-                    {({ isSubmitting }) => (
+                    {({ isSubmitting, values, setFieldValue }) => (
                       <Form>
                         <Box
                           mb="15px"
@@ -221,17 +237,6 @@ const Publish = () => {
                           mb="15px"
                           w={{ base: '300px', md: '600px', lg: '800px' }}
                         >
-                          <label htmlFor="content">Content</label>
-                          <TextareaControl
-                            id="content"
-                            name="content"
-                            textareaProps={{ rows: 10, placeholder: 'Content' }}
-                          />
-                        </Box>
-                        <Box
-                          mb="15px"
-                          w={{ base: '300px', md: '600px', lg: '800px' }}
-                        >
                           <label htmlFor="coverArt">
                             Cover Art (URL or CID)
                           </label>
@@ -259,6 +264,45 @@ const Publish = () => {
                             }}
                           />
                         </Box>
+                        <Box
+                          mb="15px"
+                          w={{ base: '300px', md: '600px', lg: '800px' }}
+                        >
+                          <label htmlFor="storyArt">License</label>
+                          <SelectControl id="license" name="license">
+                            <option value="CC0">CC0</option>
+                            <option value="CC-BY">CC-BY</option>
+                            <option value="CC-BY-SA">CC-BY-SA</option>
+                            <option value="CC-BY-ND">CC-BY-ND</option>
+                            <option value="CC-BY-NC">CC-BY-NC</option>
+                            <option value="CC-BY-NC-SA">CC-BY-NC-SA</option>
+                            <option value="CC-BY-NC-ND">CC-BY-NC-ND</option>
+                          </SelectControl>
+                        </Box>
+                        <Box
+                          mb="15px"
+                          w={{ base: '300px', md: '600px', lg: '800px' }}
+                        >
+                          <label htmlFor="content">Content</label>
+                          <div data-color-mode="dark">
+                            <MDEditor
+                              value={values.content}
+                              textareaProps={{
+                                id: 'content',
+                                name: 'content',
+                                placeholder: 'Content',
+                              }}
+                              onChange={(content) => {
+                                setFieldValue('content', content)
+                              }}
+                              height="500px"
+                              previewOptions={{
+                                className: 'story',
+                              }}
+                            />
+                          </div>
+                        </Box>
+
                         <HStack>
                           <Button type="submit" disabled={isSubmitting}>
                             Record
@@ -300,7 +344,9 @@ const Publish = () => {
                             .revoke(values.transactionHash)
                             .then((result) => {
                               console.log('result:', result)
-                              setSubmitRevokeResult('Success! - ' + result.hash)
+                              setSubmitRevokeResult(
+                                'Transaction Submitted! - ' + result.hash
+                              )
                               setSubmitting(false)
                             })
                             .catch((err) => {
@@ -337,7 +383,11 @@ const Publish = () => {
                           />
                         </Box>
                         <HStack>
-                          <Button type="submit" disabled={isSubmitting}>
+                          <Button
+                            colorScheme="blue"
+                            type="submit"
+                            disabled={isSubmitting}
+                          >
                             Revoke
                           </Button>
                           <Text pl="10px">{submitRevokeResult}</Text>

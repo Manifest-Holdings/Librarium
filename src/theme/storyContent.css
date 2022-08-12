@@ -1,0 +1,116 @@
+.story {
+  font-family: 'Roslindale', serif !important;
+}
+.story h1 {
+  font-size: 32px;
+  text-transform: uppercase;
+  line-height: 56px;
+  text-align: center;
+  width: fit-content;
+  margin: 0 auto 40px;
+  position: relative;
+}
+.story h1::first-letter {
+  font-size: 74px;
+  text-transform: uppercase;
+  vertical-align: middle;
+  padding-left:3px;
+  padding-right:3px;
+  content: "";
+  background: url(/images/first-letter-bg-smaller.png) no-repeat center;
+  background-size: contain;
+}
+.story h2 {
+  font-size: 48px;
+  line-height: 56px;
+  margin: 40px auto 80px;
+  width: 100%;
+  text-align: center;  
+}
+.story h3 {
+  font-size: 32px;
+  line-height: 40px;
+  text-align: center;
+  width: fit-content;
+  margin: 0 auto 40px;
+}
+
+.story blockquote {
+  width: 100%;
+  margin: 40px auto;
+  background: #404040;
+  padding: 20px 50px;
+  text-align: center;
+}
+.story blockquote p {
+  font-size: 40px;
+  line-height: 48px;
+  margin: 0;
+  width: 100%;
+}
+.story p {
+  font-size: 14px;
+  line-height: 24px;
+  width: 80%;
+  margin: 0 auto 24px;
+}
+.story pre {
+  width: 100%;
+  margin: 40px auto;
+  background: #A9A9A9;
+  padding: 20px 50px;
+}
+.story pre code {
+  padding: 0;
+}
+.story code {
+  background: #A9A9A9;
+  padding: 2px 2px;
+}
+.story ul, ol {
+  margin: 0px auto 0px !important;
+  width: 85%;
+  padding: revert !important;
+}
+.story li {
+  width: 85%;
+  margin: auto;
+  font-size: 14px;
+  line-height: 24px;
+}
+.story hr {
+  border: 0;
+  height: 20px;
+  width: 60px;
+  background: url(/images/flourish-small4.png) no-repeat center;
+  background-size: 60px 20px;
+  margin: 80px auto;
+}
+@media only screen and (max-width: 767px) {
+  .story {
+    margin-top: 80px;
+    margin-bottom: 80px;
+    width: 95%;
+  }
+  .story h1 {
+    font-size: 30px;
+    line-height: 50px;
+  }
+  .story h1::first-letter {
+    font-size: 54px;
+  }
+  .story h2 {
+    font-size: 40px;
+    line-height: 48px;
+    margin: 20px auto 40px;
+  }
+  .story h3 {
+    font-size: 28px;
+    line-height: 32px;
+    margin: 0 auto 20px;
+  }
+  .story blockquote p {
+    font-size: 32px;
+    line-height: 40px;
+  }
+}
