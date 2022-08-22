@@ -17,12 +17,13 @@ import {
   Tab,
   TabPanel,
   TabPanels,
+  Tooltip,
 } from '@chakra-ui/react'
+import { QuestionOutlineIcon } from '@chakra-ui/icons'
 import { useState, useEffect, ComponentType } from 'react'
 import * as Yup from 'yup'
 import { MDEditorProps } from '@uiw/react-md-editor'
 import '@uiw/react-md-editor/markdown-editor.css'
-// import "@uiw/react-markdown-preview/markdown.css";
 
 import dynamic from 'next/dynamic'
 
@@ -134,7 +135,6 @@ const Publish = () => {
                         .required('Required'),
                       content: Yup.string().required('Required'),
                       coverArt: Yup.string().required('Required'),
-                      storyArt: Yup.string().required('Required'),
                     })}
                     onSubmit={(
                       values: RecordValues,
@@ -237,9 +237,25 @@ const Publish = () => {
                           mb="15px"
                           w={{ base: '300px', md: '600px', lg: '800px' }}
                         >
-                          <label htmlFor="coverArt">
-                            Cover Art (URL or CID)
-                          </label>
+                          <Flex justifyContent="space-between">
+                            <Flex alignItems="center">
+                              <label htmlFor="coverArt">Cover Art</label>
+                              <Text
+                                ml="10px"
+                                textTransform="uppercase"
+                                fontSize="10px"
+                                color="#999"
+                              >
+                                (URL or CID)
+                              </Text>
+                            </Flex>
+                            <Tooltip
+                              label="This is the image that shows up in the NFT and when viewing the list of stories. It needs to a square (1:1) aspect ratio and a max resolution of 500x500."
+                              fontSize="md"
+                            >
+                              <QuestionOutlineIcon mr="10px" />
+                            </Tooltip>
+                          </Flex>
                           <InputControl
                             id="coverArt"
                             name="coverArt"
@@ -252,9 +268,25 @@ const Publish = () => {
                           mb="15px"
                           w={{ base: '300px', md: '600px', lg: '800px' }}
                         >
-                          <label htmlFor="storyArt">
-                            Story Art (URL or CID)
-                          </label>
+                          <Flex justifyContent="space-between">
+                            <Flex alignItems="center">
+                              <label htmlFor="storyArt">Story Art</label>
+                              <Text
+                                ml="10px"
+                                textTransform="uppercase"
+                                fontSize="10px"
+                                color="#999"
+                              >
+                                (URL or CID - optional)
+                              </Text>
+                            </Flex>
+                            <Tooltip
+                              label="This is the image that shows up in reader app. If an image isn't provided, the cover art image is used instead. It needs to be 16:10 aspect ratio with a max resolution of 1376x860."
+                              fontSize="md"
+                            >
+                              <QuestionOutlineIcon mr="10px" />
+                            </Tooltip>
+                          </Flex>
                           <InputControl
                             id="storyArt"
                             name="storyArt"

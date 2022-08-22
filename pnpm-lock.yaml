@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@apollo/client': ^3.6.5
   '@babel/core': '>=7.0.0 <8.0.0'
+  '@chakra-ui/icons': ^2.0.8
   '@chakra-ui/react': ^2.1.2
   '@chakra-ui/system': '>=2.0.0-next.0'
   '@chakra-ui/theme': ^2.0.3
@@ -92,6 +93,7 @@ specifiers:
 
 dependencies:
   '@apollo/client': 3.6.9_7oyq4t3ocdziwagw7zfqg4youi
+  '@chakra-ui/icons': 2.0.8_2udmylflur5brigijozln4cy64
   '@chakra-ui/react': 2.2.6_enirrjxwj4gqubnbyewa6gof3m
   '@chakra-ui/system': 2.2.4_oj5smyx4pkioqvs6eohmxginfy
   '@chakra-ui/theme': 2.1.5_r56oxewql32lblvauqybun6z4e
@@ -816,6 +818,28 @@ packages:
       react: 18.1.0
     dev: false
 
+  /@chakra-ui/icon/3.0.8_2udmylflur5brigijozln4cy64:
+    resolution: {integrity: sha512-avd6mthBoG9R8cLLAROi/FItgk7wHy1YpeAXOrGdK/U/ECVWZev64RmI1UduKuVOLlSZldXWzFJmLdw6dAMG7A==}
+    peerDependencies:
+      '@chakra-ui/system': '>=2.0.0'
+      react: '>=18'
+    dependencies:
+      '@chakra-ui/system': 2.2.4_oj5smyx4pkioqvs6eohmxginfy
+      '@chakra-ui/utils': 2.0.8
+      react: 18.1.0
+    dev: false
+
+  /@chakra-ui/icons/2.0.8_2udmylflur5brigijozln4cy64:
+    resolution: {integrity: sha512-otX85/laLd9rC26EsaRK/QufXxclfK/JGw3vdxh+sEULFgwuC56tUzmXTwIt8GcDIx/LvZBkDgkXN0sn6Cqmog==}
+    peerDependencies:
+      '@chakra-ui/system': '>=2.0.0'
+      react: '>=18'
+    dependencies:
+      '@chakra-ui/icon': 3.0.8_2udmylflur5brigijozln4cy64
+      '@chakra-ui/system': 2.2.4_oj5smyx4pkioqvs6eohmxginfy
+      react: 18.1.0
+    dev: false
+
   /@chakra-ui/image/2.0.7_2udmylflur5brigijozln4cy64:
     resolution: {integrity: sha512-ctQku96p6KFxYQRcJfxDnr3A5pRPqNCUBkdDvbX/312eD+riVpitCV4wo5tamD3HZiWMaw0tnU+VjjCdiGLzHg==}
     peerDependencies:
@@ -1363,6 +1387,15 @@ packages:
 
   /@chakra-ui/utils/2.0.6:
     resolution: {integrity: sha512-ZjrHZo9GXZeAU1uvn/ZLU37avUz/3wsoqulRDSL//Kc/RrcmP1Ru6pmQ746qN3An+O29RFTQ4lj8M0R2T+I2uA==}
+    dependencies:
+      '@types/lodash.mergewith': 4.6.6
+      css-box-model: 1.2.1
+      framesync: 5.3.0
+      lodash.mergewith: 4.6.2
+    dev: false
+
+  /@chakra-ui/utils/2.0.8:
+    resolution: {integrity: sha512-5xSzOYSYbJEh+myY1mC6rOX+mzM/F2fiDqAw0zybHhfUab4zPHCO5RlgYVJ0L1DlGZUogVgRP6szH1xoBCcWQg==}
     dependencies:
       '@types/lodash.mergewith': 4.6.6
       css-box-model: 1.2.1
