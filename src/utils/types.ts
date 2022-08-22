@@ -7,8 +7,13 @@ export interface Book {
   title: string
   author: Author
   content: string
-  tags: string[]
+  tags: Tag[]
   timestamp: number
+}
+
+export interface Tag {
+  key: string
+  value: string
 }
 
 export interface Author {
