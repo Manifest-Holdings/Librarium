@@ -28,16 +28,23 @@ const Home = () => {
   const { loading, data, error } = useQuery<Books>(BOOKS_QUERY)
 
   return (
-    <Flex
-      alignItems="center"
-      justifyContent="top"
-      direction="column"
-      h="full"
-      mt="80px"
-      px="20px"
-    >
-      <VStack mb="50px">
-        <Heading as="h1" size="4xl">
+    <Flex alignItems="center" justifyContent="top" direction="column" h="full">
+      <VStack
+        mt="-80px"
+        pt="90px"
+        pb="150px"
+        mb="25px"
+        width="full"
+        backgroundImage="url(/images/librarium_door.jpg)"
+        backgroundSize="cover"
+        backgroundPosition="center"
+        sx={{
+          maskImage: 'linear-gradient(to bottom, black 80%,transparent 98%);',
+          WebkitMaskImage:
+            'linear-gradient(to bottom, black 80%,transparent 98%);',
+        }}
+      >
+        <Heading as="h1" size="4xl" mt="80px">
           The Librarium
         </Heading>
         <Text fontSize="xl">

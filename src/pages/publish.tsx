@@ -112,7 +112,7 @@ const Publish = () => {
                   <Heading>Revoke</Heading>
                 </Tab>
               </TabList>
-              <TabPanels bgColor="#090909" py="10px" px="20px">
+              <TabPanels py="10px" px="20px">
                 <TabPanel>
                   <Formik
                     initialValues={{
@@ -336,7 +336,11 @@ const Publish = () => {
                         </Box>
 
                         <HStack>
-                          <Button type="submit" disabled={isSubmitting}>
+                          <Button
+                            variant="whiteOutline"
+                            type="submit"
+                            disabled={isSubmitting}
+                          >
                             Record
                           </Button>
                           <Text pl="10px">{submitRecordResult}</Text>
@@ -416,7 +420,7 @@ const Publish = () => {
                         </Box>
                         <HStack>
                           <Button
-                            colorScheme="blue"
+                            variant="whiteOutline"
                             type="submit"
                             disabled={isSubmitting}
                           >

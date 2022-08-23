@@ -1,4 +1,4 @@
-export function shortenAddress(address: string) {
+export function shortenAddress(address: string, length = 3): string {
   if (!address) return ''
-  return address.slice(0, 3) + '...' + address.slice(-3)
+  return address.slice(0, length) + '...' + address.slice(-length)
 }

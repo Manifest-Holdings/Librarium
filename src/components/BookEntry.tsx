@@ -14,12 +14,16 @@ import {
   Tbody,
   Td,
   useDisclosure,
+  Tooltip,
 } from '@chakra-ui/react'
+import { CopyIcon } from '@chakra-ui/icons'
 import { Remarkable } from 'remarkable'
 import DOMPurify from 'dompurify'
 import Moment from 'react-moment'
 import Link from 'next/link'
 import type { Book } from '../utils/types'
+import { shortenAddress } from 'utils/formatters'
+
 type Props = {
   book: Book
 }
@@ -30,9 +34,24 @@ function BookEntry({ book }: Props) {
   return (
     <Box w="80%" py="10" key={book.id}>
       <Stack mb="5">
-        <Heading as="h3" size="lg">
-          {book.title}
-        </Heading>
+        <HStack spacing="20px">
+          <Heading as="h3" size="lg">
+            {book.title}
+          </Heading>
+          <Tooltip label="Copy Book ID to Clipboard">
+            <Button
+              variant="outline"
+              py="5px"
+              px="5px"
+              size="sm"
+              onClick={() => {
+                navigator.clipboard.writeText(book.id)
+              }}
+            >
+              <CopyIcon w="4" h="4" />
+            </Button>
+          </Tooltip>
+        </HStack>
         <HStack>
           <Heading size="sm">{book.author.name}</Heading>
           <Text fontSize="sm" color="#999999">
@@ -44,7 +63,7 @@ function BookEntry({ book }: Props) {
                 book.author.wallet
               }
             >
-              <a target="_blank">{book.author.wallet}</a>
+              <a target="_blank">{shortenAddress(book.author.wallet)}</a>
             </Link>
           </Text>
         </HStack>
@@ -73,7 +92,13 @@ function BookEntry({ book }: Props) {
           </TableContainer>
         </Box>
       </Stack>
-      <Box border="1px solid #fff" p="10px" position="relative">
+      <Box
+        border="1px solid #ddcbbd"
+        background="black"
+        color="white"
+        p="10px"
+        position="relative"
+      >
         <Button
           size="sm"
           onClick={onToggle}
@@ -99,7 +124,7 @@ function BookEntry({ book }: Props) {
           <Link
             href={process.env.NEXT_PUBLIC_ETHERSCAN_LINK + '/tx/' + book.id}
           >
-            <a target="_blank">{book.id}</a>
+            <a target="_blank">{shortenAddress(book.id, 6)}</a>
           </Link>
         </Text>
         <Text fontSize="xs" pt="2" color="#999999" textTransform={'uppercase'}>
