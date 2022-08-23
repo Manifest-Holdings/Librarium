@@ -1,6 +1,14 @@
 [
-  { "inputs": [], "name": "NoPublishAccess", "type": "error" },
-  { "inputs": [], "name": "NotOwner", "type": "error" },
+  {
+    "inputs": [],
+    "name": "NoPublishAccess",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "NotOwner",
+    "type": "error"
+  },
   {
     "anonymous": false,
     "inputs": [
@@ -62,8 +70,16 @@
       },
       {
         "components": [
-          { "internalType": "string", "name": "key", "type": "string" },
-          { "internalType": "string", "name": "value", "type": "string" }
+          {
+            "internalType": "string",
+            "name": "key",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "value",
+            "type": "string"
+          }
         ],
         "indexed": false,
         "internalType": "struct Library.Tag[]",
@@ -102,7 +118,24 @@
   },
   {
     "inputs": [
-      { "internalType": "address", "name": "newPublisher", "type": "address" }
+      {
+        "internalType": "address",
+        "name": "newNFT",
+        "type": "address"
+      }
+    ],
+    "name": "addNFTWhitelist",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "newPublisher",
+        "type": "address"
+      }
     ],
     "name": "addPublisher",
     "outputs": [],
@@ -111,9 +144,26 @@
   },
   {
     "inputs": [],
+    "name": "getNFTWhitelist",
+    "outputs": [
+      {
+        "internalType": "address[]",
+        "name": "",
+        "type": "address[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
     "name": "getPublishers",
     "outputs": [
-      { "internalType": "address[]", "name": "publishers", "type": "address[]" }
+      {
+        "internalType": "address[]",
+        "name": "",
+        "type": "address[]"
+      }
     ],
     "stateMutability": "view",
     "type": "function"
@@ -121,16 +171,21 @@
   {
     "inputs": [],
     "name": "hasValidPublishAccess",
-    "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
     "stateMutability": "view",
     "type": "function"
   },
   {
     "inputs": [
-      { "internalType": "address", "name": "owner_", "type": "address" },
       {
         "internalType": "address",
-        "name": "writePassContract_",
+        "name": "owner_",
         "type": "address"
       }
     ],
@@ -142,27 +197,63 @@
   {
     "inputs": [],
     "name": "owner",
-    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
     "stateMutability": "view",
     "type": "function"
   },
   {
     "inputs": [],
     "name": "proxiableUUID",
-    "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }],
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
     "stateMutability": "view",
     "type": "function"
   },
   {
     "inputs": [
-      { "internalType": "string", "name": "title", "type": "string" },
-      { "internalType": "string", "name": "author", "type": "string" },
-      { "internalType": "address", "name": "authorWallet", "type": "address" },
-      { "internalType": "string", "name": "content", "type": "string" },
+      {
+        "internalType": "string",
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "author",
+        "type": "string"
+      },
+      {
+        "internalType": "address",
+        "name": "authorWallet",
+        "type": "address"
+      },
+      {
+        "internalType": "string",
+        "name": "content",
+        "type": "string"
+      },
       {
         "components": [
-          { "internalType": "string", "name": "key", "type": "string" },
-          { "internalType": "string", "name": "value", "type": "string" }
+          {
+            "internalType": "string",
+            "name": "key",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "value",
+            "type": "string"
+          }
         ],
         "internalType": "struct Library.Tag[]",
         "name": "tags",
@@ -175,15 +266,14 @@
     "type": "function"
   },
   {
-    "inputs": [{ "internalType": "uint256", "name": "i", "type": "uint256" }],
-    "name": "removePublisher",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [{ "internalType": "bytes", "name": "id", "type": "bytes" }],
-    "name": "revoke",
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "i",
+        "type": "uint256"
+      }
+    ],
+    "name": "removeNFTWhitelist",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -191,12 +281,25 @@
   {
     "inputs": [
       {
-        "internalType": "address",
-        "name": "newWritePassContract",
-        "type": "address"
+        "internalType": "uint256",
+        "name": "i",
+        "type": "uint256"
       }
     ],
-    "name": "setWritePassContract",
+    "name": "removePublisher",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes",
+        "name": "id",
+        "type": "bytes"
+      }
+    ],
+    "name": "revoke",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -221,7 +324,11 @@
         "name": "newImplementation",
         "type": "address"
       },
-      { "internalType": "bytes", "name": "data", "type": "bytes" }
+      {
+        "internalType": "bytes",
+        "name": "data",
+        "type": "bytes"
+      }
     ],
     "name": "upgradeToAndCall",
     "outputs": [],
@@ -229,9 +336,21 @@
     "type": "function"
   },
   {
-    "inputs": [],
-    "name": "writePassContract",
-    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "writePassContracts",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
     "stateMutability": "view",
     "type": "function"
   }
