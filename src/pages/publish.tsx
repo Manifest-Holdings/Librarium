@@ -303,9 +303,7 @@ const Publish = () => {
                         >
                           <label htmlFor="license">License</label>
                           <SelectControl id="license" name="license">
-                            <option value="CC0" selected>
-                              CC0
-                            </option>
+                            <option defaultValue="CC0">CC0</option>
                             <option value="CC-BY">CC-BY</option>
                             <option value="CC-BY-SA">CC-BY-SA</option>
                             <option value="CC-BY-ND">CC-BY-ND</option>
@@ -315,6 +313,9 @@ const Publish = () => {
                             <option value="allrightsreserved">
                               All Rights Reserved
                             </option>
+                            <option value="N/A">
+                              Not Applicable (No license required)
+                            </option>
                           </SelectControl>
                         </Box>
                         <Box
@@ -323,9 +324,7 @@ const Publish = () => {
                         >
                           <label htmlFor="world">World</label>
                           <SelectControl id="world" name="world">
-                            <option value="" selected>
-                              None
-                            </option>
+                            <option defaultValue="">None</option>
                             <option value="lootverse">Lootverse</option>
                             <option value="nouns">Nouns</option>
                             <option value="cryptoadz">CrypToadz</option>

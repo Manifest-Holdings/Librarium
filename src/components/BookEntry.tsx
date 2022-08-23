@@ -38,7 +38,7 @@ function BookEntry({ book }: Props) {
           <Heading as="h3" size="lg">
             {book.title}
           </Heading>
-          <Tooltip label="Copy Book ID to Clipboard">
+          <Tooltip label="Copy Entry ID to Clipboard">
             <Button
               variant="outline"
               py="5px"
