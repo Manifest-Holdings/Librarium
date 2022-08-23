@@ -155,6 +155,7 @@ const Publish = () => {
                           tags.push({ key: 'coverart', value: values.coverArt })
                           tags.push({ key: 'storyart', value: values.storyArt })
                           tags.push({ key: 'license', value: values.license })
+                          tags.push({ key: 'world', value: values.license })
                           libraryContract
                             .record(
                               values.title,
@@ -300,16 +301,48 @@ const Publish = () => {
                           mb="15px"
                           w={{ base: '300px', md: '600px', lg: '800px' }}
                         >
-                          <label htmlFor="storyArt">License</label>
+                          <label htmlFor="license">License</label>
                           <SelectControl id="license" name="license">
-                            <option value="CC0">CC0</option>
+                            <option value="CC0" selected>
+                              CC0
+                            </option>
                             <option value="CC-BY">CC-BY</option>
                             <option value="CC-BY-SA">CC-BY-SA</option>
                             <option value="CC-BY-ND">CC-BY-ND</option>
                             <option value="CC-BY-NC">CC-BY-NC</option>
                             <option value="CC-BY-NC-SA">CC-BY-NC-SA</option>
                             <option value="CC-BY-NC-ND">CC-BY-NC-ND</option>
+                            <option value="allrightsreserved">
+                              All Rights Reserved
+                            </option>
                           </SelectControl>
+                        </Box>
+                        <Box
+                          mb="15px"
+                          w={{ base: '300px', md: '600px', lg: '800px' }}
+                        >
+                          <label htmlFor="world">World</label>
+                          <SelectControl id="world" name="world">
+                            <option value="" selected>
+                              None
+                            </option>
+                            <option value="lootverse">Lootverse</option>
+                            <option value="nouns">Nouns</option>
+                            <option value="cryptoadz">CrypToadz</option>
+                            <option value="chainrunners">Chain Runners</option>
+                            <option value="moonbirds">Moonbirds</option>
+                          </SelectControl>
+                          <Box textAlign="right">
+                            <Link
+                              href="https://tfp0m1w5j9m.typeform.com/to/qCfZce2y"
+                              target="_blank"
+                              fontSize="10px"
+                              color="#999"
+                              textTransform="uppercase"
+                            >
+                              Request an additional world
+                            </Link>
+                          </Box>
                         </Box>
                         <Box
                           mb="15px"

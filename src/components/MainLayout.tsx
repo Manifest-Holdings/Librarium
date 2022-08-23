@@ -17,8 +17,6 @@ import {
   useDisclosure,
 } from '@chakra-ui/react'
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
-import '@fontsource/roboto/400.css'
-import '@fontsource/joan/400.css'
 type Props = {
   children: React.ReactNode
 }

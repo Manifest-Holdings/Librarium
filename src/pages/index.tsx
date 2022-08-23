@@ -48,7 +48,7 @@ const Home = () => {
           The Librarium
         </Heading>
         <Text fontSize="xl">
-          An open source tool for on-chain story telling.
+          An open source tool for on-chain storytelling.
         </Text>
       </VStack>
       {loading ? (
