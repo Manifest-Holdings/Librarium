@@ -44,10 +44,10 @@ const Home = () => {
             'linear-gradient(to bottom, black 80%,transparent 98%);',
         }}
       >
-        <Heading as="h1" size="4xl" mt="80px">
+        <Heading as="h1" size="4xl" mt="80px" textAlign="center">
           The Librarium
         </Heading>
-        <Text fontSize="xl">
+        <Text fontSize="xl" textAlign="center">
           An open source tool for on-chain storytelling.
         </Text>
       </VStack>
