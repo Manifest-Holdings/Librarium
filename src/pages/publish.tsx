@@ -24,16 +24,17 @@ import { useState, useEffect, ComponentType } from 'react'
 import * as Yup from 'yup'
 import { MDEditorProps } from '@uiw/react-md-editor'
 import '@uiw/react-md-editor/markdown-editor.css'
-
+import NextImage from 'next/image'
 import dynamic from 'next/dynamic'
 
 const Publish = () => {
-  const { connectWallet, isConnected, displayName, disconnectWallet } =
+  const { connectWallet, isConnected, displayName, disconnectWallet, network } =
     useWalletContext()
   const { libraryContract } = useLibraryContract()
   const [isValidForPublishing, setIsValidForPublishing] = useState(false)
   const [submitRecordResult, setSubmitRecordResult] = useState('')
   const [submitRevokeResult, setSubmitRevokeResult] = useState('')
+  const [isNetworkValid, setIsNetworkValid] = useState(true)
   const MDEditor: ComponentType<MDEditorProps> = dynamic(
     () => import('@uiw/react-md-editor').then((mod) => mod.default),
     { ssr: false }
@@ -72,16 +73,21 @@ const Publish = () => {
 
   useEffect(() => {
     if (isConnected && libraryContract) {
-      libraryContract
-        .hasValidPublishAccess()
-        .then((result) => {
-          setIsValidForPublishing(result)
-        })
-        .catch((err) => {
-          console.log(err)
-        })
+      if (network === process.env.NEXT_PUBLIC_NETWORK) {
+        setIsNetworkValid(true)
+        libraryContract
+          .hasValidPublishAccess()
+          .then((result) => {
+            setIsValidForPublishing(result)
+          })
+          .catch((err) => {
+            console.log(err)
+          })
+      } else {
+        setIsNetworkValid(false)
+      }
     }
-  }, [isConnected, libraryContract])
+  }, [network, isConnected, libraryContract])
 
   return (
     <Flex
@@ -92,8 +98,21 @@ const Publish = () => {
       mt="80px"
       px="20px"
     >
+      {!isNetworkValid && (
+        <Box
+          position="absolute"
+          top="90px"
+          backgroundColor="red.900"
+          padding="10px"
+          maxWidth="600px"
+          textAlign="center"
+        >
+          You are connected to the wrong network. Please connect to the &quot;
+          {process.env.NEXT_PUBLIC_NETWORK}&quot; network.
+        </Box>
+      )}
       <Box mb="50px">
-        <Heading as="h1" size={{ base: '3xl', md: '4xl' }}>
+        <Heading as="h1" size={{ base: '3xl', md: '4xl' }} textAlign="center">
           Publish to the Librarium
         </Heading>
       </Box>
@@ -469,14 +488,29 @@ const Publish = () => {
               </TabPanels>
             </Tabs>
           ) : (
-            <Heading
-              textAlign="center"
-              py="40px"
-              w={{ base: '250px', md: '600px' }}
-            >
-              You need a write pass to publish the library. Unfortunately you
-              don&#39;t have one.
-            </Heading>
+            <VStack py="40px" spacing="20px">
+              <Box>
+                <NextImage
+                  objectFit="cover"
+                  width="500px"
+                  height="300px"
+                  src="/images/librarium-card-full.jpg"
+                  alt="Library Card"
+                />
+              </Box>
+              <Heading textAlign="center" w={{ base: '250px', md: '600px' }}>
+                You need a write pass to publish to the library. You can find
+                one on &nbsp;
+                <Link
+                  textDecoration="underline"
+                  href="https://opensea.io/collection/librarium"
+                  target="_blank"
+                >
+                  OpenSea
+                </Link>
+                .
+              </Heading>
+            </VStack>
           )}
         </VStack>
       )}
