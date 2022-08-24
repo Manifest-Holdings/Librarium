@@ -72,6 +72,7 @@ const Publish = () => {
   }, [submitRevokeResult])
 
   useEffect(() => {
+    console.log(network)
     if (isConnected && libraryContract) {
       if (network === process.env.NEXT_PUBLIC_NETWORK) {
         setIsNetworkValid(true)

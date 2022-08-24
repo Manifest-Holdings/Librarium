@@ -84,7 +84,8 @@ function useWallet() {
     try {
       ensName = await provider.lookupAddress(address)
       balance = await provider.getBalance(address)
-      setNetwork(await provider.getNetwork().name)
+      const network = await provider.getNetwork()
+      setNetwork(network.name)
       setDisplayName(ensName ?? shortenAddress(address))
       setBalance(
         parseFloat(parseFloat(ethers.utils.formatUnits(balance)).toFixed(4))
