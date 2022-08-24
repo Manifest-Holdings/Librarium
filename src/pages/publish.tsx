@@ -47,6 +47,7 @@ const Publish = () => {
     coverArt: string
     storyArt: string
     license: string
+    world: string
   }
 
   interface RevokeValues {
@@ -123,6 +124,7 @@ const Publish = () => {
                       coverArt: '',
                       storyArt: '',
                       license: 'CC0',
+                      world: '',
                     }}
                     validationSchema={Yup.object({
                       title: Yup.string().required('Required'),
@@ -155,7 +157,7 @@ const Publish = () => {
                           tags.push({ key: 'coverart', value: values.coverArt })
                           tags.push({ key: 'storyart', value: values.storyArt })
                           tags.push({ key: 'license', value: values.license })
-                          tags.push({ key: 'world', value: values.license })
+                          tags.push({ key: 'world', value: values.world })
                           libraryContract
                             .record(
                               values.title,
@@ -247,7 +249,7 @@ const Publish = () => {
                                 fontSize="10px"
                                 color="#999"
                               >
-                                (URL or CID)
+                                (URL or IPFS CID)
                               </Text>
                             </Flex>
                             <Tooltip
@@ -278,7 +280,7 @@ const Publish = () => {
                                 fontSize="10px"
                                 color="#999"
                               >
-                                (URL or CID - optional)
+                                (URL or IPFS CID - optional)
                               </Text>
                             </Flex>
                             <Tooltip

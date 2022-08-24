@@ -22,7 +22,7 @@ const Home = () => {
           bookCount
         }
         content
-        tags(where: { key_in: ["coverart", "storyart", "license", "world"] }) {
+        tags(orderBy: key where: { key_in: ["coverart", "storyart", "license", "world"] }) {
           value
           key
         }

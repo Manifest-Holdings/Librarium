@@ -22,7 +22,7 @@ import DOMPurify from 'dompurify'
 import Moment from 'react-moment'
 import Link from 'next/link'
 import type { Book } from '../utils/types'
-import { shortenAddress } from 'utils/formatters'
+import { shortenAddress, isUrl } from 'utils/formatters'
 
 type Props = {
   book: Book
@@ -82,9 +82,13 @@ function BookEntry({ book }: Props) {
                   <Tr key={tag.key}>
                     <Td>{tag.key}</Td>
                     <Td>
-                      <Link href={tag.value}>
-                        <a target="_blank">{tag.value}</a>
-                      </Link>
+                      {isUrl(tag.value) ? (
+                        <Link href={tag.value}>
+                          <a target="_blank">{tag.value}</a>
+                        </Link>
+                      ) : (
+                        tag.value
+                      )}
                     </Td>
                   </Tr>
                 ))}
