@@ -32,7 +32,7 @@ const defaultWalletContext = {
   account: '',
   displayName: '',
   balance: 0,
-  network: '',
+  networkId: '',
 }
 
 const WalletContext = createContext<{
@@ -44,7 +44,7 @@ const WalletContext = createContext<{
   account: string
   displayName: string
   balance: number
-  network: string
+  networkId: string
 }>(defaultWalletContext)
 
 interface WalletProviderProps {
@@ -66,7 +66,7 @@ function useWallet() {
   const [provider, setProvider] = useState<ethers.providers.Provider>()
   const [isConnected, setIsConnected] = useState(false)
   const [account, setAccount] = useState<string>('')
-  const [network, setNetwork] = useState<string>('')
+  const [networkId, setNetworkId] = useState<string>('')
   const [displayName, setDisplayName] = useState('')
   const [balance, setBalance] = useState(0)
 
@@ -85,7 +85,7 @@ function useWallet() {
       ensName = await provider.lookupAddress(address)
       balance = await provider.getBalance(address)
       const network = await provider.getNetwork()
-      setNetwork(network.name)
+      setNetworkId(network.chainId)
       setDisplayName(ensName ?? shortenAddress(address))
       setBalance(
         parseFloat(parseFloat(ethers.utils.formatUnits(balance)).toFixed(4))
@@ -141,7 +141,7 @@ function useWallet() {
     setAccount('')
     setIsConnected(false)
     setDisplayName('')
-    setNetwork('')
+    setNetworkId('')
   }
 
   useEffect(() => {
@@ -167,7 +167,7 @@ function useWallet() {
     account,
     displayName,
     balance,
-    network,
+    networkId,
   }
 }
 

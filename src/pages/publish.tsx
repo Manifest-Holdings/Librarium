@@ -28,8 +28,13 @@ import NextImage from 'next/image'
 import dynamic from 'next/dynamic'
 
 const Publish = () => {
-  const { connectWallet, isConnected, displayName, disconnectWallet, network } =
-    useWalletContext()
+  const {
+    connectWallet,
+    isConnected,
+    displayName,
+    disconnectWallet,
+    networkId,
+  } = useWalletContext()
   const { libraryContract } = useLibraryContract()
   const [isValidForPublishing, setIsValidForPublishing] = useState(false)
   const [submitRecordResult, setSubmitRecordResult] = useState('')
@@ -72,9 +77,8 @@ const Publish = () => {
   }, [submitRevokeResult])
 
   useEffect(() => {
-    console.log(network)
     if (isConnected && libraryContract) {
-      if (network === process.env.NEXT_PUBLIC_NETWORK) {
+      if (networkId === process.env.NEXT_PUBLIC_NETWORK_ID) {
         setIsNetworkValid(true)
         libraryContract
           .hasValidPublishAccess()
@@ -88,7 +92,7 @@ const Publish = () => {
         setIsNetworkValid(false)
       }
     }
-  }, [network, isConnected, libraryContract])
+  }, [networkId, isConnected, libraryContract])
 
   return (
     <Flex
