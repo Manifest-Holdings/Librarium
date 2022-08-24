@@ -30,6 +30,7 @@ type Props = {
 
 function BookEntry({ book }: Props) {
   const { isOpen, onToggle } = useDisclosure()
+  const { isOpen: isRendered, onToggle: onToggleRendered } = useDisclosure()
   const md = new Remarkable({ html: true, xhtmlOut: true, breaks: true })
   return (
     <Box w="80%" py="10" key={book.id}>
@@ -99,26 +100,34 @@ function BookEntry({ book }: Props) {
         p="10px"
         position="relative"
       >
-        <Button
-          size="sm"
-          onClick={onToggle}
-          mt="1rem"
-          mr="1rem"
-          position="absolute"
-          right="0"
-          top="0"
-        >
-          {isOpen ? 'Collapse' : 'Expand'}
-        </Button>
-        <Collapse
-          in={isOpen}
-          startingHeight="250px"
-          className="story"
-          style={{ paddingTop: '20px' }}
-          dangerouslySetInnerHTML={{
-            __html: DOMPurify.sanitize(md.render(book.content)),
-          }}
-        />
+        <HStack mt="1rem" mr="1rem" position="absolute" right="0" top="0">
+          <Button size="sm" onClick={onToggle}>
+            {isOpen ? 'Collapse' : 'Expand'}
+          </Button>
+          <Button size="sm" onClick={onToggleRendered}>
+            {isRendered ? 'Markdown' : 'HTML'}
+          </Button>
+        </HStack>
+
+        <Collapse in={isOpen} startingHeight="250px">
+          <Box
+            className="story"
+            style={{
+              paddingTop: '20px',
+              display: isRendered ? 'block' : 'none',
+            }}
+            dangerouslySetInnerHTML={{
+              __html: DOMPurify.sanitize(md.render(book.content)),
+            }}
+          />
+          <pre
+            style={{
+              display: isRendered ? 'none' : 'block',
+            }}
+          >
+            {book.content}
+          </pre>
+        </Collapse>
       </Box>
       <HStack>
         <Text fontSize="xs" pt="2" color="#999999">
