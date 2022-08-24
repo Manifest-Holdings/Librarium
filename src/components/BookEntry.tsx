@@ -114,6 +114,7 @@ function BookEntry({ book }: Props) {
           in={isOpen}
           startingHeight="250px"
           className="story"
+          style={{ paddingTop: '20px' }}
           dangerouslySetInnerHTML={{
             __html: DOMPurify.sanitize(md.render(book.content)),
           }}

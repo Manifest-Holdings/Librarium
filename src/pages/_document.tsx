@@ -13,7 +13,7 @@ class MyDocument extends Document {
 
   render() {
     return (
-      <ChakraHtml>
+      <ChakraHtml backgroundColor="#282728">
         <Head>
           <link
             rel="preload"

@@ -3,11 +3,16 @@ import { gql, useQuery } from '@apollo/client'
 import { Heading, Flex, Text, VStack, Box } from '@chakra-ui/react'
 import type { Books } from '../utils/types'
 import BookEntry from '../components/BookEntry'
+import { useRouter } from 'next/router'
 
 const Home = () => {
+  const router = useRouter()
+  const specificId = router.query.id
+    ? `where: {id_in: ["${router.query.id}"]}`
+    : ''
   const BOOKS_QUERY = gql`
     query Books {
-      books(orderBy: timestamp, orderDirection: desc) {
+      books(orderBy: timestamp orderDirection: desc ${specificId}) {
         id
         title
         author {

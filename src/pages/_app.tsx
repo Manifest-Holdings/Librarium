@@ -22,8 +22,59 @@ function MyApp({ Component, pageProps }: AppProps & AppLayoutProps) {
   return (
     <>
       <Head>
-        <title>librarium.dev</title>
-        <meta name="description" content="DESCRIPTION" />
+        <title>The Librarium</title>
+        <meta
+          name="description"
+          content="An open source tool for on-chain storytelling"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/images/apple-touch-icon.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/images/favicon-32x32.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/images/favicon-16x16.png"
+        />
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="manifest" href="/site.webmanifest" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="The Librarium" />
+        <meta
+          property="og:title"
+          content="An open source tool for on-chain storytelling"
+        />
+        <meta
+          property="og:image"
+          content="https://librarium.dev/images/librarium-card.jpg"
+        />
+        <meta
+          property="og:description"
+          content="An open source tool for on-chain storytelling"
+        />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@OpenQuill" />
+        <meta name="twitter:creator" content="@OpenQuill" />
+        <meta
+          name="twitter:title"
+          content="An open source tool for on-chain storytelling"
+        />
+        <meta
+          name="twitter:description"
+          content="An open source tool for on-chain storytelling"
+        />
+        <meta
+          name="twitter:image:src"
+          content="https://librarium.dev/images/librarium-card.jpg"
+        />
       </Head>
       <ApolloProvider client={client}>
         <WalletProvider>
