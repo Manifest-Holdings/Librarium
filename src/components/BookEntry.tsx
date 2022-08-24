@@ -105,7 +105,7 @@ function BookEntry({ book }: Props) {
             {isOpen ? 'Collapse' : 'Expand'}
           </Button>
           <Button size="sm" onClick={onToggleRendered}>
-            {isRendered ? 'Markdown' : 'HTML'}
+            {isRendered ? 'HTML' : 'Markdown'}
           </Button>
         </HStack>
 
@@ -114,7 +114,7 @@ function BookEntry({ book }: Props) {
             className="story"
             style={{
               paddingTop: '20px',
-              display: isRendered ? 'block' : 'none',
+              display: isRendered ? 'none' : 'block',
             }}
             dangerouslySetInnerHTML={{
               __html: DOMPurify.sanitize(md.render(book.content)),
@@ -122,7 +122,7 @@ function BookEntry({ book }: Props) {
           />
           <pre
             style={{
-              display: isRendered ? 'none' : 'block',
+              display: isRendered ? 'block' : 'none',
             }}
           >
             {book.content}
