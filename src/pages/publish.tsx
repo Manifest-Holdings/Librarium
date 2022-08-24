@@ -78,7 +78,8 @@ const Publish = () => {
 
   useEffect(() => {
     if (isConnected && libraryContract) {
-      if (networkId === process.env.NEXT_PUBLIC_NETWORK_ID) {
+      console.log(networkId)
+      if (networkId === Number(process.env.NEXT_PUBLIC_NETWORK_ID)) {
         setIsNetworkValid(true)
         libraryContract
           .hasValidPublishAccess()
