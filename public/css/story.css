@@ -7,7 +7,7 @@
   font-family: 'Roslindale', serif !important;
 }
 .story h1 {
-  font-size: 32px;
+  font-size: 48px;
   text-transform: uppercase;
   line-height: 56px;
   text-align: center;
@@ -26,27 +26,34 @@
   background-size: contain;
 }
 .story h2 {
-  font-size: 48px;
+  font-size: 36px;
   line-height: 56px;
-  margin: 40px auto 80px;
+  margin: 40px auto 40px;
   width: 100%;
   text-align: center;
 }
 .story h3 {
-  font-size: 32px;
+  font-size: 24px;
   line-height: 40px;
   text-align: center;
   width: fit-content;
-  margin: 0 auto 40px;
+  margin: 0 auto 24px;
 }
 
-.story h4,h5 {
+.story h4 {
+  font-size: 18px !important;
+  line-height: 24px;
+  width: 80%;
+  font-weight: bold  !important;
+  margin: 0 auto 24px !important;
+}
+
+.story h5 {
   font-size: 16px !important;
   line-height: 24px;
-  text-align: center;
-  width: 75%;
+  width: 80%;
   font-weight: bold  !important;
-  margin: auto auto !important;
+  margin: 0 auto 24px !important;
 }
 
 .story blockquote {
