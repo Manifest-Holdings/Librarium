@@ -12,6 +12,16 @@ export const Button: ComponentStyleConfig = {
   },
   sizes: {},
   variants: {
+    secondary: {
+      background: '#282728',
+      color: '#ddcbbd',
+      lineHeight: '20px',
+      _hover: {
+        background: '#524d4a',
+        color: '#ddcbbd',
+        textDecoration: 'underline',
+      },
+    },
     outline: {
       background: 'transparent',
       color: '#ddcbbd',

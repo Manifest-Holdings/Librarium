@@ -24,6 +24,10 @@ type NavLinkProps = {
 const Navbar = () => {
   const Links = [
     {
+      href: '/apps',
+      label: 'APPS',
+    },
+    {
       href: process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT + '/graphql',
       label: 'SUBGRAPH',
       target: '_blank',

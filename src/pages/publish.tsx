@@ -128,7 +128,7 @@ const Publish = () => {
             <Text>Connected as: {displayName}</Text>
             <Link onClick={disconnectWallet}>[ disconnect ]</Link>
           </HStack>
-          {isValidForPublishing ? (
+          {isValidForPublishing && false ? (
             <Tabs>
               <TabList>
                 <Tab>
@@ -513,6 +513,14 @@ const Publish = () => {
                   target="_blank"
                 >
                   OpenSea
+                </Link>
+                &nbsp; or request one&nbsp;
+                <Link
+                  textDecoration="underline"
+                  href="https://tfp0m1w5j9m.typeform.com/to/gV2oFyQI"
+                  target="_blank"
+                >
+                  here
                 </Link>
                 .
               </Heading>
