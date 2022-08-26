@@ -115,7 +115,7 @@ function BookEntry({ book }: Props) {
 
         <Collapse in={isOpen} startingHeight="250px">
           <Box
-            className="story"
+            className="story librarium"
             style={{
               paddingTop: '20px',
               display: isRendered ? 'none' : 'block',

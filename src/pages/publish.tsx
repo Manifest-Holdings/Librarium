@@ -388,7 +388,7 @@ const Publish = () => {
                               }}
                               height="500px"
                               previewOptions={{
-                                className: 'story',
+                                className: 'story librarium',
                               }}
                             />
                           </div>
