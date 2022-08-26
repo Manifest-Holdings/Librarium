@@ -7,7 +7,7 @@ import { ApolloProvider } from '@apollo/client'
 import client from '../../apollo-client'
 import { WalletProvider } from 'hooks/useWalletContext'
 import Fonts from '../components/Fonts'
-import '../theme/storyContent.css'
+import '../../public/css/story.css'
 import '../theme/markdown.css'
 
 type AppLayoutProps = {

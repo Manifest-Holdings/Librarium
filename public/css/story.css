@@ -1,4 +1,9 @@
-.story {
+.story.eye {
+  margin-top: 80px;
+  margin-bottom: 80px;
+  width: 700px
+}
+.story.librarium {
   font-family: 'Roslindale', serif !important;
 }
 .story h1 {
@@ -25,7 +30,7 @@
   line-height: 56px;
   margin: 40px auto 80px;
   width: 100%;
-  text-align: center;  
+  text-align: center;
 }
 .story h3 {
   font-size: 32px;
@@ -33,6 +38,15 @@
   text-align: center;
   width: fit-content;
   margin: 0 auto 40px;
+}
+
+.story h4,h5 {
+  font-size: 16px !important;
+  line-height: 24px;
+  text-align: center;
+  width: 75%;
+  font-weight: bold  !important;
+  margin: auto auto !important;
 }
 
 .story blockquote {
@@ -52,7 +66,7 @@
   font-size: 14px;
   line-height: 24px;
   width: 80%;
-  margin: 0 auto 24px;
+  margin: 0  auto 24px;
 }
 .story pre {
   width: 100%;
