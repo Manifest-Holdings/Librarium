@@ -32,6 +32,6 @@
 A Publishing Pass is an ERC-721 NFT which allows the holder privileges to publish and revoke transactions on the Librarium. 
 
 ### How do I get a Publishing Pass?
-• Publishing Passes can be purchased from [OpenSea](https://opensea.io/collection/librarium) 
-• Or you can request a Publishing Pass [here](https://tfp0m1w5j9m.typeform.com/to/gV2oFyQI).
-• Other NFTs from various "worlds" also act as Publishing Passes, the first of which is [The Eye (for Adventurers)](https://eyeforadventurers.com/)
+• Publishing Passes can be purchased from [OpenSea](https://opensea.io/collection/librarium)  
+• Or you can request a Publishing Pass [here](https://tfp0m1w5j9m.typeform.com/to/gV2oFyQI)  
+• Other NFTs from various "worlds" also act as Publishing Passes, the first of which is [The Eye (for Adventurers)](https://eyeforadventurers.com/)
