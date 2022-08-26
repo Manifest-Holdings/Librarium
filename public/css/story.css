@@ -16,7 +16,7 @@
   position: relative;
 }
 .story h1::first-letter {
-  font-size: 74px;
+  font-size: 78px;
   text-transform: uppercase;
   vertical-align: middle;
   padding-left:3px;
