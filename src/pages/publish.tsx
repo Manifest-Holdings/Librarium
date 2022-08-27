@@ -128,7 +128,7 @@ const Publish = () => {
             <Text>Connected as: {displayName}</Text>
             <Link onClick={disconnectWallet}>[ disconnect ]</Link>
           </HStack>
-          {isValidForPublishing && false ? (
+          {isValidForPublishing ? (
             <Tabs>
               <TabList>
                 <Tab>
