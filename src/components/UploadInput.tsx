@@ -1,7 +1,7 @@
 import { useS3Upload, getImageData } from 'next-s3-upload'
 import { useState } from 'react'
 import { InputControl } from 'formik-chakra-ui'
-import { HStack, Link, Button, InputProps } from '@chakra-ui/react'
+import { HStack, Button, InputProps } from '@chakra-ui/react'
 
 type Props = {
   id: string
@@ -47,6 +47,10 @@ const UploadInput = ({
     setFieldValue(id, '')
     setUploadUrl('')
   }
+
+  const openURL = (url) => {
+    window.open(url, '_blank')
+  }
   return (
     <>
       <HStack alignItems="baseline">
@@ -57,24 +61,19 @@ const UploadInput = ({
           isDisabled={uploadUrl ? true : false}
         />
         <FileInput onChange={handleFileChange} />
-        <Button variant="whiteOutline" onClick={openFileDialog}>
-          Upload file
-        </Button>
+        {uploadUrl ? (
+          <Button variant="whiteOutline" onClick={() => openURL(uploadUrl)}>
+            Preview
+          </Button>
+        ) : (
+          <Button variant="whiteOutline" onClick={openFileDialog}>
+            Upload file
+          </Button>
+        )}
         <Button variant="whiteOutline" onClick={clearField}>
           X
         </Button>
       </HStack>
-      {uploadUrl && (
-        <Link
-          href={uploadUrl}
-          target="_blank"
-          textTransform="uppercase"
-          fontSize="10px"
-          color="#999"
-        >
-          Preview
-        </Link>
-      )}
     </>
   )
 }
