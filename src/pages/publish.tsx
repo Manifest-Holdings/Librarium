@@ -292,23 +292,15 @@ const Publish = () => {
                           mb="15px"
                           w={{ base: '300px', md: '600px', lg: '800px' }}
                         >
-                          <Flex justifyContent="space-between">
+                          <Flex justifyContent="center-between">
                             <Flex alignItems="center">
                               <label htmlFor="coverArt">Cover Art *</label>
-                              <Text
-                                ml="10px"
-                                textTransform="uppercase"
-                                fontSize="10px"
-                                color="#999"
-                              >
-                                (URL)
-                              </Text>
                             </Flex>
                             <Tooltip
                               label="This is the image that shows up in the NFT and when viewing the list of stories. It needs to a square (1:1) aspect ratio and a max resolution of 500x500."
                               fontSize="md"
                             >
-                              <QuestionOutlineIcon mr="10px" />
+                              <QuestionOutlineIcon ml="10px" my="5px" />
                             </Tooltip>
                           </Flex>
                           <UploadInput
@@ -327,23 +319,15 @@ const Publish = () => {
                           mb="15px"
                           w={{ base: '300px', md: '600px', lg: '800px' }}
                         >
-                          <Flex justifyContent="space-between">
+                          <Flex alignItems="center">
                             <Flex alignItems="center">
                               <label htmlFor="storyArt">Story Art</label>
-                              <Text
-                                ml="10px"
-                                textTransform="uppercase"
-                                fontSize="10px"
-                                color="#999"
-                              >
-                                (URL)
-                              </Text>
                             </Flex>
                             <Tooltip
                               label="This is the image that shows up in reader app. If an image isn't provided, the cover art image is used instead. It needs to be 16:10 aspect ratio with a max resolution of 1376x860."
                               fontSize="md"
                             >
-                              <QuestionOutlineIcon mr="10px" />
+                              <QuestionOutlineIcon ml="10px" my="5px" />
                             </Tooltip>
                           </Flex>
                           <UploadInput
