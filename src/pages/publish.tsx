@@ -26,6 +26,7 @@ import { MDEditorProps } from '@uiw/react-md-editor'
 import '@uiw/react-md-editor/markdown-editor.css'
 import NextImage from 'next/image'
 import dynamic from 'next/dynamic'
+import UploadInput from '../components/UploadInput'
 
 const Publish = () => {
   const {
@@ -151,6 +152,8 @@ const Publish = () => {
                       license: 'CC0',
                       world: '',
                     }}
+                    validateOnChange={false}
+                    validateOnBlur={false}
                     validationSchema={Yup.object({
                       title: Yup.string().required('Required'),
                       author: Yup.string().required('Required'),
@@ -220,13 +223,19 @@ const Publish = () => {
                       }, 500)
                     }}
                   >
-                    {({ isSubmitting, values, setFieldValue }) => (
+                    {({
+                      isSubmitting,
+                      values,
+                      setFieldValue,
+                      setFieldTouched,
+                      setFieldError,
+                    }) => (
                       <Form>
                         <Box
                           mb="15px"
                           w={{ base: '300px', md: '600px', lg: '800px' }}
                         >
-                          <label htmlFor="title">Title</label>
+                          <label htmlFor="title">Title *</label>
                           <InputControl
                             id="title"
                             name="title"
@@ -238,7 +247,7 @@ const Publish = () => {
                           mb="15px"
                           w={{ base: '300px', md: '600px', lg: '800px' }}
                         >
-                          <label htmlFor="author">Author</label>
+                          <label htmlFor="author">Author *</label>
                           <InputControl
                             id="author"
                             name="author"
@@ -250,7 +259,7 @@ const Publish = () => {
                           w={{ base: '300px', md: '600px', lg: '800px' }}
                         >
                           <label htmlFor="authorWallet">
-                            Author&#39;s Wallet
+                            Author&#39;s Wallet *
                           </label>
                           <InputControl
                             id="authorWallet"
@@ -267,14 +276,14 @@ const Publish = () => {
                         >
                           <Flex justifyContent="space-between">
                             <Flex alignItems="center">
-                              <label htmlFor="coverArt">Cover Art</label>
+                              <label htmlFor="coverArt">Cover Art *</label>
                               <Text
                                 ml="10px"
                                 textTransform="uppercase"
                                 fontSize="10px"
                                 color="#999"
                               >
-                                (URL or IPFS CID)
+                                (URL)
                               </Text>
                             </Flex>
                             <Tooltip
@@ -284,12 +293,16 @@ const Publish = () => {
                               <QuestionOutlineIcon mr="10px" />
                             </Tooltip>
                           </Flex>
-                          <InputControl
+                          <UploadInput
                             id="coverArt"
                             name="coverArt"
                             inputProps={{
                               placeholder: 'https://www.example.com/cover.png',
                             }}
+                            setFieldValue={setFieldValue}
+                            setFieldTouched={setFieldTouched}
+                            setFieldError={setFieldError}
+                            values={values}
                           />
                         </Box>
                         <Box
@@ -305,7 +318,7 @@ const Publish = () => {
                                 fontSize="10px"
                                 color="#999"
                               >
-                                (URL or IPFS CID - optional)
+                                (URL)
                               </Text>
                             </Flex>
                             <Tooltip
@@ -315,13 +328,16 @@ const Publish = () => {
                               <QuestionOutlineIcon mr="10px" />
                             </Tooltip>
                           </Flex>
-                          <InputControl
+                          <UploadInput
                             id="storyArt"
                             name="storyArt"
                             inputProps={{
-                              placeholder:
-                                'QmbWqxBEKC3P8tqsKc98xmWNzrzDtRLMiMPL8wBuTGsMnR',
+                              placeholder: 'https://www.example.com/story.png',
                             }}
+                            setFieldValue={setFieldValue}
+                            setFieldTouched={setFieldTouched}
+                            setFieldError={setFieldError}
+                            values={values}
                           />
                         </Box>
                         <Box
