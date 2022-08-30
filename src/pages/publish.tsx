@@ -96,6 +96,24 @@ const Publish = () => {
     }
   }, [networkId, isConnected, libraryContract])
 
+  const coverArtRequirements = (height, width) => {
+    if (height / width != 1) {
+      return 'Cover art must be a square image'
+    } else if ((height > 500 || height < 200) && (width > 500 || width < 200)) {
+      return 'Cover art must be between 200x200 and 500x500'
+    } else {
+      return ''
+    }
+  }
+
+  const storyArtRequirements = (height, width) => {
+    if (width != 1376 && height != 860) {
+      return 'Story art is ' + height + 'x' + width + ', it must be 1376x860'
+    } else {
+      return ''
+    }
+  }
+
   return (
     <Flex
       alignItems="center"
@@ -302,7 +320,7 @@ const Publish = () => {
                             setFieldValue={setFieldValue}
                             setFieldTouched={setFieldTouched}
                             setFieldError={setFieldError}
-                            values={values}
+                            fileRequirements={coverArtRequirements}
                           />
                         </Box>
                         <Box
@@ -337,7 +355,7 @@ const Publish = () => {
                             setFieldValue={setFieldValue}
                             setFieldTouched={setFieldTouched}
                             setFieldError={setFieldError}
-                            values={values}
+                            fileRequirements={storyArtRequirements}
                           />
                         </Box>
                         <Box

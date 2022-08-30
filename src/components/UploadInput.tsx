@@ -3,17 +3,6 @@ import { useState } from 'react'
 import { InputControl } from 'formik-chakra-ui'
 import { HStack, Link, Button, InputProps } from '@chakra-ui/react'
 
-interface RecordValues {
-  title: string
-  author: string
-  authorWallet: string
-  content: string
-  coverArt: string
-  storyArt: string
-  license: string
-  world: string
-}
-
 type Props = {
   id: string
   name: string
@@ -21,7 +10,7 @@ type Props = {
   setFieldValue: (field: string, value: unknown) => void
   setFieldTouched: (field: string, value: unknown) => void
   setFieldError: (field: string, value: unknown) => void
-  values: RecordValues
+  fileRequirements: (height: number, width: number) => string
 }
 
 const UploadInput = ({
@@ -31,40 +20,31 @@ const UploadInput = ({
   setFieldValue,
   setFieldTouched,
   setFieldError,
-  values,
+  fileRequirements,
 }: Props) => {
   const [uploadUrl, setUploadUrl] = useState('')
   const { FileInput, openFileDialog, uploadToS3 } = useS3Upload()
 
-  const handleCoverArtFileChange = async (file) => {
-    setUploadUrl('')
-    setFieldValue('coverArt', '')
+  const handleFileChange = async (file) => {
+    clearField()
     const { height, width } = await getImageData(file)
     if (height && width) {
-      if (height / width != 1) {
-        setFieldError('coverArt', 'Cover art must be a square image')
-        setFieldTouched('coverArt', true)
-      } else if (
-        (height > 500 || height < 200) &&
-        (width > 500 || width < 200)
-      ) {
-        setFieldError(
-          'coverArt',
-          'Cover art must be between 200x200 and 500x500'
-        )
-        setFieldTouched('coverArt', true)
+      const requirementError = fileRequirements(height, width)
+      if (requirementError !== '') {
+        setFieldError(id, requirementError)
+        setFieldTouched(id, true)
       } else {
-        setFieldError('coverArt', '')
-        setFieldTouched('coverArt', true)
+        setFieldError(id, '')
+        setFieldTouched(id, true)
         const { url } = await uploadToS3(file)
         setUploadUrl(url)
-        values.coverArt = url
+        setFieldValue(id, url)
       }
     }
   }
 
-  const clearCoverArt = () => {
-    setFieldValue('coverArt', '')
+  const clearField = () => {
+    setFieldValue(id, '')
     setUploadUrl('')
   }
   return (
@@ -76,11 +56,11 @@ const UploadInput = ({
           inputProps={inputProps}
           isDisabled={uploadUrl ? true : false}
         />
-        <FileInput onChange={handleCoverArtFileChange} />
+        <FileInput onChange={handleFileChange} />
         <Button variant="whiteOutline" onClick={openFileDialog}>
           Upload file
         </Button>
-        <Button variant="whiteOutline" onClick={clearCoverArt}>
+        <Button variant="whiteOutline" onClick={clearField}>
           X
         </Button>
       </HStack>
