@@ -29,11 +29,11 @@ const Home = () => {
         alignItems="left"
         justifyContent="left"
         spacing="20px"
-        direction="row"
-        mx="80px"
+        direction={{ base: 'column', sm: 'row' }}
+        mx={{ base: '5px', sm: '80px' }}
       >
         <Flex
-          width="320px"
+          width={{ base: 'auto', sm: '320px' }}
           border="1px solid #ccc"
           p="20px"
           textAlign="center"
@@ -58,7 +58,7 @@ const Home = () => {
           </Link>
         </Flex>
         <Flex
-          width="320px"
+          width={{ base: 'auto', sm: '320px' }}
           border="1px solid #ccc"
           p="20px"
           align="center"
