@@ -40,18 +40,26 @@ const UploadInput = ({
     setUploadUrl('')
     setFieldValue('coverArt', '')
     const { height, width } = await getImageData(file)
-    if (height / width != 1) {
-      setFieldError('coverArt', 'Cover art must be a square image')
-      setFieldTouched('coverArt', true)
-    } else if ((height > 500 || height < 200) && (width > 500 || width < 200)) {
-      setFieldError('coverArt', 'Cover art must be between 200x200 and 500x500')
-      setFieldTouched('coverArt', true)
-    } else {
-      setFieldError('coverArt', '')
-      setFieldTouched('coverArt', true)
-      const { url } = await uploadToS3(file)
-      setUploadUrl(url)
-      values.coverArt = url
+    if (height && width) {
+      if (height / width != 1) {
+        setFieldError('coverArt', 'Cover art must be a square image')
+        setFieldTouched('coverArt', true)
+      } else if (
+        (height > 500 || height < 200) &&
+        (width > 500 || width < 200)
+      ) {
+        setFieldError(
+          'coverArt',
+          'Cover art must be between 200x200 and 500x500'
+        )
+        setFieldTouched('coverArt', true)
+      } else {
+        setFieldError('coverArt', '')
+        setFieldTouched('coverArt', true)
+        const { url } = await uploadToS3(file)
+        setUploadUrl(url)
+        values.coverArt = url
+      }
     }
   }
 
