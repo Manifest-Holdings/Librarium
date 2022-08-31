@@ -43,7 +43,7 @@ const Home = () => {
           backgroundColor="#ddcbbd"
           color="#282728"
         >
-          <Image src="/images/genesis-eye-smaller.png" />
+          <Image src="/images/genesis-eye-smaller.png" alt="Eye Logo" />
 
           <Heading as="h2" size="lg" textAlign="center">
             The Eye (for Adventurers)
