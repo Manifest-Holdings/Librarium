@@ -16,7 +16,7 @@ import {
   useDisclosure,
   Tooltip,
 } from '@chakra-ui/react'
-import { CopyIcon } from '@chakra-ui/icons'
+import { CopyIcon, LinkIcon } from '@chakra-ui/icons'
 import { Remarkable } from 'remarkable'
 import DOMPurify from 'dompurify'
 import Moment from 'react-moment'
@@ -32,12 +32,13 @@ function BookEntry({ book }: Props) {
   const { isOpen, onToggle } = useDisclosure()
   const { isOpen: isRendered, onToggle: onToggleRendered } = useDisclosure()
   const md = new Remarkable({ html: true, xhtmlOut: true, breaks: true })
+  const prefixDirectLink = window.location.origin + '/?id='
   return (
     <Box w="80%" py="10" key={book.id}>
       <Stack mb="5">
         <HStack spacing="20px">
           <Heading as="h3" size="lg">
-            {book.title}
+            <Link href={prefixDirectLink + book.id}>{book.title}</Link>
           </Heading>
           <Tooltip label="Copy Entry ID to Clipboard">
             <Button
@@ -50,6 +51,19 @@ function BookEntry({ book }: Props) {
               }}
             >
               <CopyIcon w="4" h="4" />
+            </Button>
+          </Tooltip>
+          <Tooltip label="Copy Direct Link to Clipboard">
+            <Button
+              variant="outline"
+              py="5px"
+              px="5px"
+              size="sm"
+              onClick={() => {
+                navigator.clipboard.writeText(prefixDirectLink + book.id)
+              }}
+            >
+              <LinkIcon w="4" h="4" />
             </Button>
           </Tooltip>
         </HStack>
