@@ -7,12 +7,19 @@ import { useRouter } from 'next/router'
 
 const Home = () => {
   const router = useRouter()
-  const specificId = router.query.id
-    ? `where: {id_in: ["${router.query.id}"]}`
-    : ''
+  let primaryFilter
+  if (router.query.id) {
+    primaryFilter = `where: { id: "${router.query.id}" }`
+  } else if (router.query.author) {
+    primaryFilter = `where: {author_contains: "${router.query.author}"}`
+  } else if (router.query.world) {
+    primaryFilter = `where: {tags_: {key: "world" value_contains: "${router.query.world}"}}`
+  } else {
+    primaryFilter = ''
+  }
   const BOOKS_QUERY = gql`
     query Books {
-      books(orderBy: timestamp orderDirection: desc ${specificId}) {
+      books(orderBy: timestamp orderDirection: desc ${primaryFilter}) {
         id
         title
         author {

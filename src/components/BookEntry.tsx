@@ -32,13 +32,13 @@ function BookEntry({ book }: Props) {
   const { isOpen, onToggle } = useDisclosure()
   const { isOpen: isRendered, onToggle: onToggleRendered } = useDisclosure()
   const md = new Remarkable({ html: true, xhtmlOut: true, breaks: true })
-  const prefixDirectLink = window.location.origin + '/?id='
+  const hostname = window.location.origin
   return (
     <Box w="80%" py="10" key={book.id}>
       <Stack mb="5">
         <HStack spacing="20px">
           <Heading as="h3" size="lg">
-            <Link href={prefixDirectLink + book.id}>{book.title}</Link>
+            <Link href={hostname + '/?id=' + book.id}>{book.title}</Link>
           </Heading>
           <Tooltip label="Copy Entry ID to Clipboard">
             <Button
@@ -60,7 +60,7 @@ function BookEntry({ book }: Props) {
               px="5px"
               size="sm"
               onClick={() => {
-                navigator.clipboard.writeText(prefixDirectLink + book.id)
+                navigator.clipboard.writeText(hostname + '/?id=' + book.id)
               }}
             >
               <LinkIcon w="4" h="4" />
@@ -68,7 +68,11 @@ function BookEntry({ book }: Props) {
           </Tooltip>
         </HStack>
         <HStack>
-          <Heading size="sm">{book.author.name}</Heading>
+          <Heading size="sm">
+            <Link href={hostname + '/?author=' + book.author.wallet}>
+              {book.author.name}
+            </Link>
+          </Heading>
           <Text fontSize="sm" color="#999999">
             -&nbsp;
             <Link
@@ -99,6 +103,10 @@ function BookEntry({ book }: Props) {
                       {isUrl(tag.value) ? (
                         <Link href={tag.value}>
                           <a target="_blank">{tag.value}</a>
+                        </Link>
+                      ) : tag.key === 'world' ? (
+                        <Link href={hostname + '/?world=' + tag.value}>
+                          {tag.value}
                         </Link>
                       ) : (
                         tag.value
