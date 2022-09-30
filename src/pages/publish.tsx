@@ -27,8 +27,10 @@ import '@uiw/react-md-editor/markdown-editor.css'
 import NextImage from 'next/image'
 import dynamic from 'next/dynamic'
 import UploadInput from '../components/UploadInput'
+import { useRouter } from 'next/router'
 
 const Publish = () => {
+  const router = useRouter()
   const {
     connectWallet,
     isConnected,
@@ -45,6 +47,48 @@ const Publish = () => {
     () => import('@uiw/react-md-editor').then((mod) => mod.default),
     { ssr: false }
   )
+
+  const RecordDefaults = {
+    title: '',
+    author: '',
+    authorWallet: '',
+    content: '',
+    coverArt: '',
+    storyArt: '',
+    license: 'CC0',
+    world: '',
+  }
+
+  const Worlds = [
+    { value: '', label: 'None' },
+    { value: 'lootverse', label: 'Lootverse' },
+    { value: 'nouns', label: 'Nouns' },
+    { value: 'cryptoadz', label: 'CrypToadz' },
+    { value: 'chainrunners', label: 'Chain Runners' },
+    { value: 'moonbirds', label: 'Moonbirds' },
+  ]
+
+  if (router.query.world_override) {
+    Worlds.push({
+      value: String(router.query.world_override),
+      label: String(router.query.world_override),
+    })
+    RecordDefaults.world = String(router.query.world_override)
+  }
+
+  const SelectWorlds = () => {
+    return (
+      <SelectControl id="world" name="world">
+        {Worlds.map((world) => {
+          return (
+            <option key={world.value} value={world.value}>
+              {world.label}
+            </option>
+          )
+        })}
+      </SelectControl>
+    )
+  }
 
   interface RecordValues {
     title: string
@@ -160,16 +204,7 @@ const Publish = () => {
               <TabPanels py="10px" px="20px">
                 <TabPanel>
                   <Formik
-                    initialValues={{
-                      title: '',
-                      author: '',
-                      authorWallet: '',
-                      content: '',
-                      coverArt: '',
-                      storyArt: '',
-                      license: 'CC0',
-                      world: '',
-                    }}
+                    initialValues={RecordDefaults}
                     validateOnChange={false}
                     validateOnBlur={false}
                     validationSchema={Yup.object({
@@ -368,14 +403,7 @@ const Publish = () => {
                           w={{ base: '300px', md: '600px', lg: '800px' }}
                         >
                           <label htmlFor="world">World</label>
-                          <SelectControl id="world" name="world">
-                            <option defaultValue="">None</option>
-                            <option value="lootverse">Lootverse</option>
-                            <option value="nouns">Nouns</option>
-                            <option value="cryptoadz">CrypToadz</option>
-                            <option value="chainrunners">Chain Runners</option>
-                            <option value="moonbirds">Moonbirds</option>
-                          </SelectControl>
+                          <SelectWorlds />
                           <Box textAlign="right">
                             <Link
                               href="https://tfp0m1w5j9m.typeform.com/to/qCfZce2y"
